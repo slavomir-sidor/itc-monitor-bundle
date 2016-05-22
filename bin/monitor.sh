@@ -4,13 +4,18 @@ SCRIPT=$(realpath "$0")
 DIR=$(dirname "$SCRIPT")
 
 NAME="ITC Monitor"
-SERVICE_STATUS_FORMAT_MESSAGE="%-60s"
-SERVICE_STATUS_FORMAT_GREEN="\033[32m%s\e[0m"
-SERVICE_STATUS_FORMAT_ORANGE="\033[33m%s\e[0m"
-SERVICE_STATUS_FORMAT_RED="\033[31m%s\e[0m"
 
+SOCKET_POOL_INTERVAL="1" # SECONDS
+SOCKET_POOL_HOST="127.0.0.1"
+SOCKET_POOL_PORT="4444"
+SOCKET_POOL_LOG=$DIR/../logs/socket.log
 
-source "$DIR/monitor/header.sh" $1
+SOCKET_AGENT_HOSTNAME=$(hostname)
+SOCKET_AGENT_IP4=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+SOCKET_AGENT_IP6=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+
+source "$DIR/header.sh" $1
+source "$DIR/socket.sh" $1
 source "$DIR/monitor/cpu.sh" $1
 source "$DIR/monitor/disk.sh" $1
 source "$DIR/monitor/mail.sh" $1
@@ -18,61 +23,64 @@ source "$DIR/monitor/mysql.sh" $1
 source "$DIR/monitor/netstat.sh" $1
 source "$DIR/monitor/network.sh" $1
 source "$DIR/monitor/processes.sh" $1
-source "$DIR/monitor/socket.sh" $1
+source "$DIR/monitor/pool.sh" $1
+source "$DIR/monitor/tcpdump.sh" $1
 
 ITCMonitorStart()
 {
-	ITCMonitorCPU
-	ITCMonitorDisk
-	ITCMonitorMail
-	ITCMonitorMysql
-	ITCMonitorNetwork
-	ITCMonitorNetstat
-	ITCMonitorProcesses
+	ITCMonitorPool
+	#(ITCMonitorDisk > /dev/tcp/127.0.0.1/4444)
+	# (ITCMonitorConnection )
+    # (ITCMonitorCPU > /dev/tcp/127.0.0.1/4444)
+	# 
+	# (ITCMonitorNetstat > /dev/tcp/127.0.0.1/4444)
+	# ITCMonitorConnection
+	# (ITCMonitorMail)
+	# (ITCMonitorMysql)
+	# (ITCMonitorNetwork)
+	# 
+	# (ITCMonitorProcesses)
 }
 
 ITCMonitor()
 {
 	case "$1" in
 
-		start-server)
-			ITCMonitorServer
+		start)
+			ITCMonitorStart $2
 			;;
 
-		start)
-			ITCMonitorStart
-			;;
 		cpu)
-           ITCMonitorCPU 
+            ITCMonitorCPU $2
             ;;
 
         disk)
-            ITCMonitorDiskUsage
+            ITCMonitorDiskUsage $2
             ;;
 
 		mail)
-            ITCMonitorMail
+            ITCMonitorMail $2
             ;;
 
         mysql)
-            ITCMonitorMysql
+            ITCMonitorMysql $2
             ;;
 
         network)
-            ITCMonitorNetwork
+            ITCMonitorNetwork $2
             ;;
 
         netstat)
-        	ITCMonitorNetstat
+        	ITCMonitorNetstat $2
         	;;
 
         processes)
-        	ITCMonitorProcesses
+        	ITCMonitorProcesses $2
         	;;
 
 		*)
 			ITCMonitorHeader
-			printf "Service $SERVICE_STATUS_FORMAT_GREEN usage: $SERVICE_STATUS_FORMAT_ORANGE [$SERVICE_STATUS_FORMAT_ORANGE]\n" $NAME $NAME "start-server|start|restart|cpu|disk|mail|mysql|network|netstat|processes"
+			printf "Service " $NAME usage" start-server|start|restart|cpu|disk|mail|mysql|network|netstat|processes"
   			;;
 	esac
 	exit

@@ -10,5 +10,7 @@ ITCMonitorDiskUsage()
 	COLUMNS[4]="Foreign Address"
 	COLUMNS[5]="State"
 	
-	sudo watch -n 1 -t "iotop -a -qqq"
+	sudo watch -p -t -n ${POOL_INTERVAL} \
+		"iotop -a -qqq"
+		
 }

@@ -9,7 +9,9 @@ ITCMonitorNetstat ()
 	COLUMNS[4]="Foreign Address"
 	COLUMNS[5]="State"
 
-	watch -n 30 -t "netstat -ntu | sort | uniq -c | sort -n"
+	watch -t -n ${POOL_INTERVAL} \
+		"netstat -ntu | sort | uniq -c | sort -n"
+
 	# watch -n 30 "netstat -ntu | cut -d: -f1 | sort | uniq -c | sort -n"
 	# watch -n 30 "netstat -ntu | awk '{print \$5}' | cut -d: -f1 | sort | uniq -c | sort -n"
 }

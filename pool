@@ -1,0 +1,16 @@
+GET / HTTP/1.1
+Host: localhost:4444
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: http://www.itc-monitor-bundle.jahman
+Sec-WebSocket-Version: 13
+DNT: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: cs,sk;q=0.8,en-US;q=0.6,en;q=0.4,de;q=0.2
+Cookie: ajs_user_id=null; ajs_group_id=null; ajs_anonymous_id=%229c17ecae-63df-48b8-9ac0-411d695aac85%22; mp_64c4908de7b1aef6ecb52c1736e23c72_mixpanel=%7B%22distinct_id%22%3A%20%221536e5e9028f1-0a657e161-3d710557-232800-1536e5e90293f5%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%7D; intercom-id=f8b3ff32-20fc-45d3-bf04-84b336cf6e1a
+Sec-WebSocket-Key: 4DWXtFAnNHKkVwOVaPMoww==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+

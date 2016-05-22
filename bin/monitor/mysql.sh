@@ -2,5 +2,6 @@
 
 ITCMonitorMysql ()
 {
-	watch -n 1 "mysqladmin -C"
+	watch -n ${POOL_INTERVAL} \
+		"mysqladmin -C"
 } 

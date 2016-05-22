@@ -1,6 +1,6 @@
 #!/bin/bash
 
-socketEncodeMessage()
+ITCsocketEncodeMessage()
 {
 	if [ -z "$1" ]
 	then
@@ -10,7 +10,7 @@ socketEncodeMessage()
 	fi
 }
 
-socketDecodeMessage()
+ITCsocketDecodeMessage()
 {
 	if [ -z "$1" ]
 	then
@@ -20,12 +20,12 @@ socketDecodeMessage()
 	fi
 }
 
-socketDecodeMessage()
+ITCSocketSend()
 {
 	if [ -z "$1" ]
 	then
 		echo "Socket Decode Message is empty."
 	else
-		openssl enc -base64 -d <<< $1
+		ITC_SOCKET_SEND_STATUS=$(echo $1 > /dev/tcp/127.0.0.1/4444)
 	fi
 }
