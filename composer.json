@@ -1,0 +1,28 @@
+{
+	"name" : "sk.itcloud.symfony/itc-monitor-bundle",
+	"license" : "ITCloud Symfony Monitor Bundle",
+	"type" : "bundle",
+	"description" : "Symfony ITC Monitor Bundle",
+	"minimum-stability" : "dev",
+	"autoload" : {
+		"psr-0" : {
+			"SK\\MonitorBundle" : "src/"
+		}
+	},
+	"bin" : [
+		"bin/itc",
+		"bin/itc-initd"
+	],
+	"config" : {
+		"bin-dir" : "bin",
+		"vendor-dir" : "vendor"
+	},
+	"require" : {
+		"php" : ">=5.5.0"
+	},
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "git@github.com:slavomirkuzma/itc-monitor-bundle.git"
+		}
+	]
+}
