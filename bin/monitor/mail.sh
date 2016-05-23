@@ -2,6 +2,6 @@
 
 ITCMonitorMail ()
 {
-	watch -t -n ${POOL_INTERVAL}\
+	watch -t -n ${POOL_INTERVAL} \
 		"mailq"
 }

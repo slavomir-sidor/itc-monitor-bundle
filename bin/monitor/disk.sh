@@ -10,7 +10,9 @@ ITCMonitorDiskUsage()
 	COLUMNS[4]="Foreign Address"
 	COLUMNS[5]="State"
 	
-	sudo watch -p -t -n ${POOL_INTERVAL} \
-		"iotop -a -qqq"
-		
+	sudo watch \
+			-p \
+			-t \
+			-n ${MONITOR_INTERVAL} \
+			"iotop -a -qqq" > /dev/tcp/127.0.0.1/4444
 }

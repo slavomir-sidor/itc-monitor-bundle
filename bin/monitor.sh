@@ -3,16 +3,13 @@
 SCRIPT=$(realpath "$0")
 DIR=$(dirname "$SCRIPT")
 
-NAME="ITC Monitor"
+NAME="ITC OS Monitor"
 
-SOCKET_POOL_INTERVAL="1" # SECONDS
-SOCKET_POOL_HOST="127.0.0.1"
-SOCKET_POOL_PORT="4444"
-SOCKET_POOL_LOG=$DIR/../logs/socket.log
+MONITOR_INTERVAL="1" # SECONDS
 
-SOCKET_AGENT_HOSTNAME=$(hostname)
-SOCKET_AGENT_IP4=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
-SOCKET_AGENT_IP6=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+MONITOR_POOL_HOST="127.0.0.1"
+MONITOR_POOL_PORT="4444"
+MONITOR_POOL_LOG=$DIR/../logs/socket.log
 
 source "$DIR/header.sh" $1
 source "$DIR/socket.sh" $1
@@ -29,7 +26,8 @@ source "$DIR/monitor/tcpdump.sh" $1
 ITCMonitorStart()
 {
 	ITCMonitorPool
-	#(ITCMonitorDisk > /dev/tcp/127.0.0.1/4444)
+	ITCMonitorDiskUsage > /dev/tcp/127.0.0.1/4444
+
 	# (ITCMonitorConnection )
     # (ITCMonitorCPU > /dev/tcp/127.0.0.1/4444)
 	# 
@@ -80,7 +78,7 @@ ITCMonitor()
 
 		*)
 			ITCMonitorHeader
-			printf "Service " $NAME usage" start-server|start|restart|cpu|disk|mail|mysql|network|netstat|processes"
+			printf "Service " $NAME " usage start-server|start|restart|cpu|disk|mail|mysql|network|netstat|processes"
   			;;
 	esac
 	exit
