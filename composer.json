@@ -6,12 +6,26 @@
 	"minimum-stability" : "dev",
 	"autoload" : {
 		"psr-0" : {
-			"SK\\MonitorBundle" : "src/"
+			"SK\\ITC\\MonitorBundle" : "src/"
 		}
 	},
+	
 	"bin" : [
-		"bin/itc",
-		"bin/itc-initd"
+	    "bin/monitor/cpu.sh",
+		"bin/monitor/disk.sh",
+		"bin/monitor/mail.sh",
+		"bin/monitor/mysql.sh",
+		"bin/monitor/netstat.sh",
+		"bin/monitor/network.sh",
+		"bin/monitor/pool.sh",
+		"bin/monitor/postfix.sh",
+		"bin/monitor/processes.sh",
+		"bin/monitor/push.sh",
+		"bin/monitor/tcpdump.sh",
+		"bin/monitor.sh",
+		"bin/header.sh",
+		"bin/info.sh",
+		"bin/socket.sh"
 	],
 	"config" : {
 		"bin-dir" : "bin",
