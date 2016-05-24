@@ -9,9 +9,8 @@
 			"SK\\ITC\\MonitorBundle" : "src/"
 		}
 	},
-	
 	"bin" : [
-	    "bin/monitor/cpu.sh",
+		"bin/monitor/cpu.sh",
 		"bin/monitor/disk.sh",
 		"bin/monitor/mail.sh",
 		"bin/monitor/mysql.sh",
