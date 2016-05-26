@@ -13,3 +13,4 @@
 /bin/doctrine-migrations
 /bin/sql-formatter
 /bin/sauce_config
+/bin/validate-json
