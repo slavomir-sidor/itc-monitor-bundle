@@ -21,13 +21,13 @@
 		"bin/monitor/processes.sh",
 		"bin/monitor/push.sh",
 		"bin/monitor/tcpdump.sh",
-		"bin/monitor.sh",
-		"bin/header.sh",
-		"bin/info.sh",
-		"bin/socket.sh"
+		"bin/monitor/monitor.sh",
+		"bin/monitor/header.sh",
+		"bin/monitor/info.sh",
+		"bin/monitor/socket.sh"
 	],
 	"config" : {
-		"bin-dir" : "bin",
+		"bin-dir" : "bin/monitor",
 		"vendor-dir" : "vendor"
 	},
 	"require" : {

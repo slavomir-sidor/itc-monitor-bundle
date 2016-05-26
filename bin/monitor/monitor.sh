@@ -9,19 +9,19 @@ MONITOR_INTERVAL="1" # SECONDS
 
 MONITOR_POOL_HOST="127.0.0.1"
 MONITOR_POOL_PORT="4444"
-MONITOR_POOL_LOG=$DIR/../logs/socket.log
+MONITOR_POOL_LOG=$DIR/../../logs/socket.log
 
 source "$DIR/header.sh" $1
 source "$DIR/socket.sh" $1
-source "$DIR/monitor/cpu.sh" $1
-source "$DIR/monitor/disk.sh" $1
-source "$DIR/monitor/mail.sh" $1
-source "$DIR/monitor/mysql.sh" $1
-source "$DIR/monitor/netstat.sh" $1
-source "$DIR/monitor/network.sh" $1
-source "$DIR/monitor/processes.sh" $1
-source "$DIR/monitor/pool.sh" $1
-source "$DIR/monitor/tcpdump.sh" $1
+source "$DIR/cpu.sh" $1
+source "$DIR/disk.sh" $1
+source "$DIR/mail.sh" $1
+source "$DIR/mysql.sh" $1
+source "$DIR/netstat.sh" $1
+source "$DIR/network.sh" $1
+source "$DIR/processes.sh" $1
+source "$DIR/pool.sh" $1
+source "$DIR/tcpdump.sh" $1
 
 ITCMonitorStart()
 {
