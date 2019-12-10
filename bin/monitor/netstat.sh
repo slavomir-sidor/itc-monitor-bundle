@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# concept 2 for monitor only
 ITCMonitorNetstat ()
 {
 	COLUMNS[0]="Proto"
